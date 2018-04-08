@@ -23,7 +23,7 @@ module.exports = function(logger){
         redisClient.auth(portalConfig.redis.password);
     }
     if (portalConfig.redis.db) {
-        redisClient.auth(portalConfig.redis.db);
+        redisClient.select(portalConfig.redis.db);
     }
     //Handle messages from master process sent via IPC
     process.on('message', function(message) {
