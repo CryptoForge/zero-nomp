@@ -97,7 +97,8 @@ module.exports = function(logger, portalConfig, poolConfigs){
         redisStats = redis.createClient(portalConfig.redis.port, portalConfig.redis.host);
         redisStats.on('error', function(err){
         redisStats.auth(portalConfig.redis.password);
-        });
+        redisStats.select(portalConfig.redis.db);
+	});
     }
 
    this.getBlocks = function (cback) {
