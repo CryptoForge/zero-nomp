@@ -88,7 +88,9 @@ function SetupForPool(logger, poolOptions, setupFinished){
     if (poolOptions.redis.password) {
         redisClient.auth(poolOptions.redis.password);
     }
-
+    if (poolOptions.redis.db) {
+        redisClient.select(poolOptions.redis.db);
+    }
     var magnitude;
     var minPaymentSatoshis;
     var coinPrecision;
