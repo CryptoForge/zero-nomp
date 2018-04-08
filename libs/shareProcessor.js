@@ -30,6 +30,9 @@ module.exports = function(logger, poolConfig){
     if (redisConfig.password) {
         connection.auth(redisConfig.password);
     }
+    if (redisConfig.db) {
+        connection.select(redisConfig.db);
+    }
     connection.on('ready', function(){
         logger.debug(logSystem, logComponent, logSubCat, 'Share processing setup with redis (' + redisConfig.host +
             ':' + redisConfig.port  + ')');
