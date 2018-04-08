@@ -137,6 +137,9 @@ module.exports = function(logger){
                 if (portalConfig.redis.password) {
                     client.auth(portalConfig.redis.password);
                 }
+		if (portalConfig.redis.db) {
+                    client.select(portalConfig.redis.db);
+                }
                 client.hgetall('coinVersionBytes', function(err, coinBytes){
                     if (err){
                         client.quit();
